@@ -27,15 +27,23 @@ public class MessagePublisherService {
         rabbitTemplate.convertAndSend(exchangeName, routingKey, transactionMessage);
     }
 
-    static class TransactionMessage {
+    public static class TransactionMessage {
         private BigDecimal amount;
         private String currency;
 
-        TransactionMessage(BigDecimal amount, String currency) {
+        public TransactionMessage(BigDecimal amount, String currency) {
             this.amount = amount;
             this.currency = currency;
         }
 
-        // Getters (and setters if needed)
+        public BigDecimal getAmount() {
+            return amount;
+        }
+
+        public String getCurrency() {
+            return currency;
+        }
+
+        // If setters are not needed, they can be omitted
     }
 }

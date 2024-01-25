@@ -22,8 +22,7 @@ public class MessageListenerService {
     @Transactional
     @RabbitListener(queues = "${messaging.queue.name}")
     public void receiveMessage(MessagePublisherService.TransactionMessage message) {
-
-        Account account = accountRepository.findById(1L).orElseGet(() -> new Account());
+        Account account = accountRepository.findById(1L).orElseGet(Account::new);
 
         // Update balance
         BigDecimal newBalance = account.getBalance().add(message.getAmount());
